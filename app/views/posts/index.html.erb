@@ -1,0 +1,32 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Posts</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>content</th>
+      <th>UserId</th>
+      <th>category</th>
+      <th>pablic</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @posts.each do |post| %>
+      <td><%= post.content %></td>
+      <% if session[:user_id] %>
+        <td><%= post.user_id %></td>
+      <% else %>
+        <td><%= post.guest %></td>
+      <% end %>
+      <td><%= post.category_id %></td>
+      <td><%= post.status %></td>
+      <td>
+        <%= link_to 'show', post_psth(post) %>
+        <%= link_to 'edit', edit_post_path(post) %>
+        <%= link_to 'destroy', post_psth(post), method: :delete, data: { confirm: 'Are you sure?' } %>
+      </td>
+    <% end %>
+  </tbody>
+</table>
