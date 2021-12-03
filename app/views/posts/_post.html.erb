@@ -1,0 +1,13 @@
+<div class="post">
+  <p>
+    <% if session[:user_id] %>
+      id: <%= post.user_id %>
+    <% else %>
+      id: <%= post.guest %>
+    <% end %>
+  </p>
+  <p>
+    <%= post.content %>
+    <%= post.category.name %>
+  </p>
+</div>

@@ -1,3 +1,135 @@
 // Place all the styles related to the Posts controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+/*共通部分---------------*/
+
+html {
+  font-size: 100%;
+}
+
+a {
+  text-decoration: none;
+  padding-left: 20px;
+}
+
+img {
+  max-width: 100%;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  background-color: #dae0e6;
+}
+
+//header
+
+.logo {
+  width: 120px;
+}
+
+
+.page-header {
+  display: flex;
+  justify-content: space-between;
+  background-color: #fff;
+  margin-bottom: 20px;
+}
+
+.header-nav {
+  display: flex;
+  text-transform: uppercase;
+  margin-top: 37px;
+  list-style: none;
+  padding-right: 20px;
+}
+
+.header-nav li {
+  margin-left: 36px;
+}
+
+.header-nav a{
+  color: black;
+  font-size: 20px;
+}
+
+.header-nav a:hover {
+  color: red;
+}
+
+//main
+
+article {
+  width: 50%;
+  padding: 0 0 0 10%;
+}
+
+aside {
+  width: 20%;
+  padding: 0 10% 0 0;
+}
+
+.post-contents {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 50px;
+}
+
+.post-background {
+  background-color: #fff;
+  padding: 10px;
+}
+
+
+// form
+.popup {
+  /*メッセージのコンテンツを中央に配置する*/
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  display: none;
+
+  /*半透明の黒背景にする*/
+  height: 100vh;
+  width: 100%;
+  background: rgba(0,0,0,0.6);
+
+  /*画面がスクロールしないように固定する*/
+  position: fixed;
+  top: 0;
+  left: 0;
+}
+
+.content {
+  left: 50%;
+  top: 50%;
+  position: absolute;
+  transform: translate(-50%,-50%);
+}
+
+.form-field {
+  background-color: #fff;
+  margin: 0 290px;
+  padding: 10px;
+}
+
+textarea {
+  margin: 0px;
+  width: 730px;
+  height: 200px;
+  border-radius: 10px;
+  border: solid 1px;
+  resize: none;
+  padding: 10px;
+}
+
+.status {
+  margin-bottom: 20px;
+}
+
+//投稿表示部分
+
+.post {
+  border-bottom: solid 1px; 
+}

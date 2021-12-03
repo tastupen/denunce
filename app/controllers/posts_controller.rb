@@ -2,7 +2,8 @@ class PostsController < ApplicationController
   before_action :set_post, only: %i[ show edit update destroy ]
   
   def index
-    @posts = Post.all
+    @posts = Post.status_public.order(created_at: :desc)
+    @categories = Category.all
   end
 
   def show
@@ -10,6 +11,7 @@ class PostsController < ApplicationController
 
   def new
     @post = Post.new
+    @categories = Category.all
   end
 
   def create
@@ -18,11 +20,12 @@ class PostsController < ApplicationController
     if @post.save
       redirect_to root_path, notice: "投稿に成功しました"
     else
-      redirect_to "new", alert: "アップデートに失敗しました"
+      redirect_to new_post_path, alert: "投稿に失敗しました"
     end
   end
 
   def edit
+    @categories = Category.all
   end
 
   def update
@@ -44,6 +47,6 @@ class PostsController < ApplicationController
     end
   
     def post_params
-      params(:post).permit(:content, :status, :guest, :user_id, :category_id, )
+      params.permit( :content, :status, :guest, :user_id, :category_id )
     end
 end

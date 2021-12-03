@@ -1,32 +1,29 @@
-<p id="notice"><%= notice %></p>
-
-<h1>Posts</h1>
-
-<table>
-  <thead>
-    <tr>
-      <th>content</th>
-      <th>UserId</th>
-      <th>category</th>
-      <th>pablic</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @posts.each do |post| %>
-      <td><%= post.content %></td>
-      <% if session[:user_id] %>
-        <td><%= post.user_id %></td>
-      <% else %>
-        <td><%= post.guest %></td>
-      <% end %>
-      <td><%= post.category_id %></td>
-      <td><%= post.status %></td>
-      <td>
-        <%= link_to 'show', post_psth(post) %>
-        <%= link_to 'edit', edit_post_path(post) %>
-        <%= link_to 'destroy', post_psth(post), method: :delete, data: { confirm: 'Are you sure?' } %>
-      </td>
-    <% end %>
-  </tbody>
-</table>
+<div class="post-contents wrapper">
+  <article>
+    <div class="post-background">
+      <h1>愚痴</h1>
+      <p id="notice"><%= notice %></p>
+      <div id="messages">
+        <%= render @posts %>
+      </div>
+    </div>
+  </article>
+  <aside>
+    <div class="post-background">
+      管理人挨拶
+      <img class="admin-logo" src="images/animal_koutei_penguin_hina.png" alt="管理人のlogo">
+      <p>こんにちは denunce管理人です。</p>
+      <p>snsにかけないことや、普段たまっている愚痴をここで発散しませんか？</p>
+      <p>あなたの日頃の愚痴を投稿して、ストレスを吹き飛ばしましょう！！</p>
+    </div>
+    <br>
+    <div class="post-background">
+      <p>愚痴の種類</p>
+      <% @categories.each do |category| %>
+        <p><%= link_to "#{category.name}", posts_path %></p>
+      <% end %> 
+    </div>
+    <br>
+    <div class="post-background">広告</div>
+  </aside>
+</div>

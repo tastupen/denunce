@@ -1,40 +1,39 @@
-<%= form_with(model: post, local: true) do |form| %>
-  <% if post.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(post.errors.count, "error") %> prohibited this post from being saved:</h2>
-
-      <ul>
-      <% post.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
+<div class="form-field">
+  <h1>愚痴</h1>
+  <P id="alert"><%= alert %></P>
+  <%= form_with(model: post, remote: true) do |form| %>
+    <div class="field">
+      <%= form.label :愚痴の内容 %>
+      <%= form.text_area :content %>
+    </div>
+  
+    <div>
+      <%= form.collection_select(:category_id, @categories, :id, :name) %>
+    </div>
+    
+    <P>この投稿を共有しますか？</P>
+    
+    <div class="status">
+      <%= form.label(:public, for: nil) do %>
+        <%= form.radio_button :status, :public %>
+        <%= 'すべての人に公開されます' %>
       <% end %>
-      </ul>
+  
+      <%= form.label(:private, for: nil) do %>
+        <%= form.radio_button :status, :private %>
+        <%= 'あなたにだけ表示されます' %>
+      <% end %>
+    </div>
+  
+    <% if session[:user_id] %>
+      <%= form.hidden_field :user_id, :value => session[:user_id] %>
+    <% end %>
+  
+    <%= form.hidden_field :guest, :value => session[:guest] %>
+  
+  
+    <div class="actions">
+      <%= form.submit %>
     </div>
   <% end %>
-  
-  <div class="field">
-    <%= form.label :content %>
-    <%= form.text_area :content %>
-  </div>
-  
-  <% if session[:user_id] %>
-   <%= form.hidden_field :user_id, :value => session[:user_id] %>
-  <% end %>
-  
-  <%= form.hidden_field :guest, :value => session[:guest] %>
-  
-  <%= f.collection_select(:category_id, @categories, :id, :name) %>
-  
-  <%= form.label(:public, for: nil) do %>
-    <%= form.radio_button :status, :public %>
-    <%= I18n.t('すべての人に公開されます') %>
-  <% end %>
-  
-  <%= form.label(:private, for: nil) do %>
-    <%= form.radio_button :status, :private %>
-    <%= I18n.t('あなたにだけ表示されます') %>
-  <% end %>
-  
-  <div class="actions">
-    <%= form.submit %>
-  </div>
-<% end %>
+</div>
