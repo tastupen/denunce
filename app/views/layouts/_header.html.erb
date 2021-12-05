@@ -4,10 +4,26 @@
     <ul class="header-nav">
       <% if session[:user_id] %>
       <li>
-        <%= link_to 'ログアウト', logout_path, method: :delete  %>
-        <%= link_to '投稿', new_post_path %>
+        <%= link_to 'ログアウト', logout_path, method: :delete %>
+      </li>
+      <li>
+        <%= link_to 'MYページ', admin_user_path(session[:user_id]) %>
+      </li>
+      <li>
+        <div id="open">
+          <%= link_to '投稿', new_post_path, remote: true %>
+        </div>
+        <div class="popup">
+          <div class="content">
+            <%= link_to '×', posts_path, class: "js-modal-close btn-batu", remote: true %>
+            <%= render 'form', post: @post %>
+          </div>
+        </div>
       </li>
       <% else %>
+        <li>
+          <%= link_to 'サインイン', new_admin_user_path %>
+        </li>
         <li>
           <%= link_to 'ログイン', login_path %>
         </li>

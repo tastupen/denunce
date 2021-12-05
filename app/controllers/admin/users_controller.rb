@@ -9,17 +9,25 @@ class Admin::UsersController < ApplicationController
     @user = User.new(user_params)
     
     if @user.save
-      redirect_to admin_user_url(@user), notice: "「#{@user.name}」を登録しました"
+      @post = Post.where(guest: session[:guest])
+      @post.each do |post|
+        post.user_id = session[:user_id]
+        post.save
+      end
+      redirect_to admin_user_url(@user), notice: "「#{@user.nickname}」を登録しました"
     else
-      render new
+      render :new
     end
   end
 
   def show
+    @posts = Post.where(user_id: session[:user_id])
   end
 
   def index
     @users = User.all
+    @posts = Post.where(user_id: session[:user_id])
+    @user = User.new
   end
   
   def edit
@@ -27,15 +35,15 @@ class Admin::UsersController < ApplicationController
   
   def update
     if @user.update(user_params)
-      redirect_to admin_user_path(@user), notice: "ユーザ「#{@user.name}」を更新しました。"
+      redirect_to admin_user_path(@user), notice: "ユーザ「#{@user.nickname}」を更新しました。"
     else
-      render :new
+      render :edit
     end
   end
 
   def destroy
     @user.destroy
-    redirect_to admin_users_url, notice: "ユーザ「#{@user.name}」を削除しました。"
+    redirect_to admin_users_url, notice: "ユーザ「#{@user.nickname}」を削除しました。"
   end
 
   

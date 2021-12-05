@@ -1,4 +1,4 @@
-<%= form_with model: [:admin, user], local: true do |f|%>
+<%= form_with model: [:admin, @user], local: true do |f|%>
   <div>
       <%= f.label :nickname, '名前' %>
       <%= f.text_field :nickname, class: 'form-control' %>
@@ -9,11 +9,13 @@
       <%= f.text_field :email, class: 'form-control' %>
   </div>
   
-  <div>
+  <% if session[:user_id] %>
+    <div>
       <%= f.label :admin, class: 'form-check-label' do %>
         <%= f.check_box :admin, class: 'form-check-input' %>管理者権限
       <% end %>
-  </div>
+    </div>
+  <% end %>
   
   <div>
       <%= f.label :password, 'パスワード' %>
