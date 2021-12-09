@@ -11,7 +11,7 @@ class ApplicationController < ActionController::Base
       end
     else
       @guest = User.new
-      session[:guest] = Date.current.strftime('%y%m%d%H%M%S')
+      session[:guest] = DateTime.current.strftime('%y%m%d%H%M%S')
       @guest.guest = session[:guest]
       @guest.save
     end

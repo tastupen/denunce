@@ -1,8 +1,57 @@
+<header class="page-header">
+  <h1><a href="/"><img class="logo" src="assets/denunce.png" alt="denunceのロゴ"></a></h1>
+  <nav>
+    <ul class="header-nav">
+      <% if session[:user_id].present? %>
+      <li>
+        <%= link_to 'ログアウト', logout_path, method: :delete %>
+      </li>
+      <li>
+        <%= link_to 'MYページ', admin_user_path(session[:user_id]) %>
+      </li>
+      <li>
+        <div id="open">
+          <%= link_to '投稿', new_post_path, remote: true %>
+        </div>
+        <div class="popup">
+          <div class="content">
+            <%= link_to '×', posts_path, class: "js-modal-close btn-batu", remote: true %>
+            <%= render 'form', post: @post %>
+          </div>
+        </div>
+      </li>
+      <% else %>
+        <li>
+          <%= link_to 'サインイン', new_admin_user_path %>
+        </li>
+        <li>
+          <%= link_to 'ログイン', login_path %>
+        </li>
+        <li>
+          <div id="open">
+            <%= link_to '投稿', new_post_path, remote: true %>
+          </div>
+          <div class="popup">
+            <div class="content">
+              <%= link_to '×', posts_path, class: "js-modal-close btn-batu", remote: true %>
+              <%= render 'form', post: @post %>
+            </div>
+          </div>
+        </li>
+      <% end %>
+    </ul>
+  </nav>
+</header>
+<p id="notice"><%= notice %></p>
 <div class="post-contents wrapper">
   <article>
     <div class="post-background">
-      <h1>愚痴</h1>
-      <p id="notice"><%= notice %></p>
+      <% if @category.present? %>
+        <h3><%= link_to "愚痴", "/", category: @major_category_name %> > <%= @category.name %></h3>
+        <h1><%= @category.name %>の愚痴一覧<%= @posts.count %>件</h1>
+      <% else %>
+        <h1>愚痴一覧</h1>
+      <% end %>
       <div id="messages">
         <%= render @posts %>
       </div>
@@ -18,9 +67,20 @@
     </div>
     <br>
     <div class="post-background">
+      <h2>このサイトの使い方</h2>
+      <P>このサイトはログインせずに投稿することが可能です</P>
+      <P>ただログインしていただくと、投稿していただいた投稿を管理することができます！</P>
+      <P>(ログイン前に投稿していただいた投稿は表示することはできません(´;ω;｀))</P>
+      <P>さらに他の投稿にいいねをすることができ、愚痴を共感することが可能になります</P>
+      <P>その他にカテゴリー別に投稿割合が見れたりして、自分の愚痴がどのカテゴリーが多いか、知ることができます！</P>
+      <P>ご興味ありましたら、ログインしてみてください！</P>
+      <P>よろしくお願いします！！！</P>
+    </div>
+    <br>
+    <div class="post-background">
       <p>愚痴の種類</p>
       <% @categories.each do |category| %>
-        <p><%= link_to "#{category.name}", posts_path %></p>
+        <p><%= link_to "#{category.name}", posts_path(category: category.id) %></p>
       <% end %> 
     </div>
     <br>

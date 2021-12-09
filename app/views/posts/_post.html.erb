@@ -1,13 +1,9 @@
 <div class="post">
   <p>
-    <% if session[:user_id] %>
-      id: <%= post.user_id %>
-    <% else %>
-      id: <%= post.guest %>
-    <% end %>
+    id: <%= post.guest %>
   </p>
   <p>
-    <%= post.content %>
-    <%= post.category.name %>
+    <%= safe_join(post.content.split("\n"),tag(:br)) %>
   </p>
+  <p>愚痴の種類: <%= post.category.name %></p>
 </div>

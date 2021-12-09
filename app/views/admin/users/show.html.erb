@@ -1,56 +1,53 @@
-<h1>ユーザー詳細</h1>
-<nav>
-  <%= link_to '戻る', root_path %>
-</nav>
-<table>
-  <tbody>
-    <tr>
-      <th><%= User.human_attribute_name(:id) %></th>
-      <td><%= @user.id %></td>
-    </tr>
-    <tr>
-      <th><%= User.human_attribute_name(:nickname) %></th>
-      <td><%= @user.nickname %></td>
-    </tr> 
-    <tr>
-      <th><%= User.human_attribute_name(:email) %></th>
-      <td><%= @user.email %></td>
-    </tr> 
-    <tr>
-      <th><%= User.human_attribute_name(:admin) %></th>
-      <td><%= @user.admin? ? 'あり' : 'なし'%></td>
-    </tr> 
-    <tr>
-      <th><%= User.human_attribute_name(:created_at) %></th>
-      <td><%= @user.created_at %></td>
-    </tr> 
-    <tr>
-      <th><%= User.human_attribute_name(:updated_at) %></th>
-      <td><%= @user.updated_at %></td>
-    </tr> 
-  </tbody>
-</table>
-
-<%= link_to "ユーザー変更", edit_admin_user_path(session[:user_id]) %>
-
-<h1>投稿一覧</h1>
-
-<table>
-  <thead>
-    <tr>
-      <th>Content</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
+<p id="notice"><%= notice %></p>
+<div>
+  <div class="show-all">
+    <div class="show-display">
+      <div class="back-left">
+        <%= link_to '戻る', root_path, class: "back-btn" %>
+      </div>
+      <div class="user-left">
+        <%= link_to "ユーザー変更",edit_admin_user_path(@user), class: "user-btn" %>
+      </div>
+    </div>
+    <h1><a href="/"><%= image_tag "denunce.png", class: "logo" %></a></h1>
+    <h1>MYページ</h1>
+    <hr>
+    <div class="show-display">
+      <div>
+        <h2>ユーザー</h2>
+        <table>
+          <tbody>
+            <tr>
+              <th>ニックネーム</th>
+              <td><%= @user.nickname %></td>
+            </tr> 
+            <tr>
+              <th>メールアドレス</th>
+              <td><%= @user.email %></td>
+            </tr> 
+          </tbody>
+        </table>
+      </div>
+      <div>
+        <h4>ユーザーの愚痴の投稿割合</h4>
+        <%= pie_chart @posts.eager_load(:category).group(:"categories.name").count %>
+      </div>
+    </div>
+    
+    <h2>投稿一覧</h2>
+    <hr>
     <% @posts.each do |post| %>
-      <tr>
-        <td><%= post.content %></td>
-        <td><%= link_to 'Show', post %></td>
-        <td><%= link_to 'Edit', edit_post_path(post) %></td>
-        <td><%= link_to 'Destroy', post, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
+      <div class="post-display">
+        <div><p><%= safe_join(post.content.split("\n"),tag(:br)) %></p></div>
+        <div>
+          <%= link_to post, method: :delete, data: { confirm: '削除していいですか?' } do %>
+            <i class="fas fa-trash-alt"></i>
+          <% end %>
+        </div>
+      </div>
     <% end %>
-  </tbody>
-</table>
+        </div>
+      </tbody>
+    </table>
+  </div>
+</div>

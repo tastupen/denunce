@@ -58,6 +58,7 @@ body {
   color: red;
 }
 
+
 //main
 
 article {
@@ -128,6 +129,90 @@ textarea {
   margin-bottom: 20px;
 }
 
+.text-center {
+  text-align: center!important;  
+}
+.form-all {
+  top: 30%;
+  width: 100%;
+  max-width: 330px;
+  padding: 15px;
+  margin: 110px auto;
+  background-color: #fff;
+}
+
+.form-control {
+  width: 300px;
+  height: 40px;
+  padding: 5px;
+  border-radius: 10px;
+  border: solid 1px #ced4da;
+}
+
+.form-btn1 {
+  width: 320px;
+  padding: 0.5rem 1rem;
+  font-size: 1.25rem;
+  border-radius: 0.3rem;
+  color: #fff;
+  background-color: #0d6efd;
+  border-color: #0d6efd;
+  margin-bottom: 10px;
+}
+
+.form-btn2 {
+  width: 320px;
+  padding: 0.5rem 1rem;
+  font-size: 1.25rem;
+  border-radius: 0.3rem;
+  color: #fff;
+  background-color: #dc143c;
+  border-color: #dc143c;
+  margin-bottom: 10px;
+}
+
+.label-hidden {
+  display: none;
+}
+
+.form-group {
+  margin-bottom: 10px;
+}
+
+.show-all {
+  margin: auto;
+  background-color: #fff;
+  padding: 20px;
+  max-width: 660px;
+}
+
+.back-left {
+  text-align: left;
+}
+
+.back-btn {
+  padding: 0.5rem 1rem;
+  font-size: 1.25rem;
+  border-radius: 0.3rem;
+  color: #fff;
+  background-color: #dc143c;
+  border-color: #dc143c;
+  margin-bottom: 10px;
+}
+.user-left {
+  text-align: left;
+  margin: 10px 10px 10px 0;
+}
+
+.user-btn {
+  padding: 0.5rem 1rem;
+  font-size: 1.25rem;
+  border-radius: 0.3rem;
+  color: #fff;
+  background-color: #dc143c;
+  border-color: #dc143c;
+  margin-bottom: 10px;
+}
 //投稿表示部分
 
 .post {

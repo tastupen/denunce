@@ -2,8 +2,9 @@ class PostsController < ApplicationController
   before_action :set_post, only: %i[ show edit update destroy ]
   
   def index
-    @posts = Post.status_public.order(created_at: :desc)
+    @posts = Post.display_list(category_params, status)
     @categories = Category.all
+    @category = Category.request_category(category_params)
   end
 
   def show
@@ -24,21 +25,14 @@ class PostsController < ApplicationController
     end
   end
 
-  def edit
-    @categories = Category.all
-  end
-
-  def update
-    if @post.update(post_params)
-      redirect_to edit_post_path, notice: "アップデートに成功しました"
-    else
-      redirect_to "edit", alert: "アップデートに失敗しました"
-    end
-  end
-
   def destroy
     @post.destroy
-    redirect_to root_path, notice: "削除しました"
+    redirect_to admin_user_path(session[:user_id]), notice: "削除しました"
+  end
+  
+  def category_params
+    params[:category].present? ? params[:category]
+                               : "none"
   end
   
   private
@@ -48,5 +42,9 @@ class PostsController < ApplicationController
   
     def post_params
       params.permit( :content, :status, :guest, :user_id, :category_id )
+    end
+    
+    def update_params
+      params.require(:post).permit(:content, :status, :guest, :user_id, :category_id)
     end
 end

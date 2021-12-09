@@ -16,7 +16,7 @@ class SessionsController < ApplicationController
       end
       redirect_to root_path, notice: 'ログインしました'
     else
-      redirect_to login_path, alert: "登録できませんでした"
+      redirect_to login_path, alert: "ログインできませんでした"
     end
   end
   

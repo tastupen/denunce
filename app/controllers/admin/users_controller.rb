@@ -8,25 +8,27 @@ class Admin::UsersController < ApplicationController
   def create
     @user = User.new(user_params)
     
+    @user.guest = @guest.guest
     if @user.save
       @post = Post.where(guest: session[:guest])
       @post.each do |post|
         post.user_id = session[:user_id]
         post.save
       end
-      redirect_to admin_user_url(@user), notice: "「#{@user.nickname}」を登録しました"
+      redirect_to root_path, notice: "「#{@user.nickname}」を登録しました"
     else
       render :new
     end
   end
 
   def show
-    @posts = Post.where(user_id: session[:user_id])
+    @posts = Post.where(user_id: @user.id)
+    @categories = Category.all
   end
 
   def index
     @users = User.all
-    @posts = Post.where(user_id: session[:user_id])
+    @posts = Post.where(user_id: nil)
     @user = User.new
   end
   
