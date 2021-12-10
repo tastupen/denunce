@@ -1,9 +1,33 @@
-<div class="post">
-  <p>
-    id: <%= post.guest %>
-  </p>
-  <p>
-    <%= safe_join(post.content.split("\n"),tag(:br)) %>
-  </p>
-  <p>愚痴の種類: <%= post.category.name %></p>
+<div id="post_<%= post.id %>">
+  <div class="post">
+    <p>
+      id: <%= post.guest %>
+    </p>
+    <p>
+      <%= safe_join(post.content.split("\n"),tag(:br)) %>
+    </p>
+    <div class="likes-display">
+      <div><p>愚痴の種類: <%= post.category.name %></p></div>
+      <div>
+        <% if session[:user_id] %>
+          <% if User.find_by(id: session[:user_id]).liked_by?(post.id) %>
+            <%= link_to  destroy_like_path(post), method: :DELETE, remote: true  do %>
+              <i class="fas fa-heart"></i>
+            <% end %>
+            <%= post.likes.count %>
+          <% else %>
+            <%= link_to  create_like_path(post), method: :POST, remote: true do %>
+              <i class="far fa-heart"></i>
+            <% end %>
+            <%= post.likes.count %>
+          <% end %>
+        <% else %>
+          <%= link_to login_path do %>
+            <i class="far fa-heart"></i>
+          <% end %>
+          <%= post.likes.count %>
+        <% end %>
+      </div>
+    </div>
+  </div>
 </div>
