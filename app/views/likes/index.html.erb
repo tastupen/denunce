@@ -3,12 +3,7 @@
 <div class="post-contents wrapper">
   <article>
     <div class="post-background">
-      <% if @category.present? %>
-        <h3><%= link_to "愚痴", "/", category: @major_category_name %> > <%= @category.name %></h3>
-        <h1><%= @category.name %>の愚痴一覧<%= @posts.count %>件</h1>
-      <% else %>
-        <h1>愚痴一覧</h1>
-      <% end %>
+      <H1>愚痴一覧</H1>
       <div id="meassages">
         <%= render @posts %>
       </div>

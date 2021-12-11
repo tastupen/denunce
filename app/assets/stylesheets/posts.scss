@@ -35,7 +35,6 @@ body {
   justify-content: space-between;
   align-items: center;
   background-color: #fff;
-  margin-bottom: 20px;
 }
 
 .header-nav {
@@ -56,6 +55,27 @@ body {
 
 .header-nav a:hover {
   color: red;
+}
+
+.subheader {
+  background-color: #fff;
+  margin-bottom: 20px;
+  border-top: solid 1px #dcdcdc;
+}
+
+.container {
+  max-width: 100%!important;  
+}
+
+.underheader {
+  padding: 0 20px 5px 0;
+  font-size: .8rem;
+  padding-top: 15px;
+  font-weight: 900;
+}
+
+.publicnav {
+  margin-left: 10px;
 }
 
 //form

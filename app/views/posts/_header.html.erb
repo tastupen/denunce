@@ -1,5 +1,5 @@
 <header class="page-header">
-  <h1><a href="/"><img class="logo" src="assets/denunce.png" alt="denunceのロゴ"></a></h1>
+  <h1><a href="/"><%= image_tag "denunce.png", class: "logo" %></a></h1>
   <div class="search-form">
     <%= form_with url: search_path, method: :get, local: :true do |f| %>
       <%= f.text_field :word, placeholder: "投稿を検索してください" %>
@@ -47,3 +47,14 @@
     </ul>
   </nav>
 </header>
+<div class="subheader">
+  <div class="container">
+    <div class="underheader">
+      <span class="publicnav">
+        <span><%= link_to "ホーム", root_path %></span>
+        <span><%= link_to "おすすめ投稿", good_path %></span>
+        <span><%= link_to "いいねランキング", likes_path  %></span>
+      </span>
+    </div>
+  </div>
+</div>

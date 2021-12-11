@@ -1,5 +1,10 @@
 class LikesController < ApplicationController
-  before_action :post_params
+  before_action :post_params, only: [:create, :destroy]
+  
+  def index
+    @posts = Post.find(Like.group(:post_id).order('count(post_id) desc').pluck(:post_id))
+    @categories = Category.all
+  end
   
   def create
     if session[:user_id].present?
