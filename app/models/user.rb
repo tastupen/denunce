@@ -1,7 +1,7 @@
 class User < ApplicationRecord
   has_secure_password
   
-  has_many :likes
+  has_many :likes, dependent: :destroy
   
   def liked_by?(post_id)
     likes.where(post_id: post_id).exists?

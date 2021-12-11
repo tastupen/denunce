@@ -1,5 +1,5 @@
 class Category < ApplicationRecord
-  has_many :posts
+  has_many :posts, dependent: :destroy
   
   scope :request_category, -> (category) {
     if category != "none"
@@ -8,4 +8,8 @@ class Category < ApplicationRecord
       ""
     end
   }
+  
+  def self.search(words)
+    where(["name like?", "%#{words}%"])
+  end
 end

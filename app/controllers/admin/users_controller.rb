@@ -15,14 +15,14 @@ class Admin::UsersController < ApplicationController
         post.user_id = session[:user_id]
         post.save
       end
-      redirect_to root_path, notice: "「#{@user.nickname}」を登録しました"
+      redirect_to login_path, notice: "「#{@user.nickname}」を登録しました！ ログインしてください！"
     else
       render :new
     end
   end
 
   def show
-    @posts = Post.where(user_id: @user.id)
+    @posts = Post.where(user_id: @user.id).order(created_at: :desc)
     @categories = Category.all
   end
 
@@ -44,8 +44,13 @@ class Admin::UsersController < ApplicationController
   end
 
   def destroy
+    @post = Post.where(user_id: @user.id)
+    if @post.present?
+      @post.delete_all
+    end
     @user.destroy
-    redirect_to admin_users_url, notice: "ユーザ「#{@user.nickname}」を削除しました。"
+    reset_session
+    redirect_to root_path, notice: "ユーザ「#{@user.nickname}」を削除しました。"
   end
 
   

@@ -59,5 +59,8 @@
         <% end %>
       </div>
     <% end %>
+    <div class="user-destroy-btn">
+      <%= link_to 'アカウント削除', [:admin, @user], method: :delete, data: { confirm: "ユーザ「#{@user.nickname}」を削除します。よろしいですか？" }, class: "user-btn" %>
+    </div>
   </div>
 </div>

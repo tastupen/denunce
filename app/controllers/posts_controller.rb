@@ -5,6 +5,7 @@ class PostsController < ApplicationController
     @posts = Post.display_list(category_params, status)
     @categories = Category.all
     @category = Category.request_category(category_params)
+    @likesuser = User.find_by(id: session[:user_id])
   end
 
   def show
