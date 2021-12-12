@@ -45,7 +45,6 @@ body {
 }
 
 .header-nav li {
-  margin-left: 36px;
 }
 
 .header-nav a{
@@ -263,4 +262,103 @@ textarea {
 
 .post {
   border-bottom: solid 1px; 
+}
+
+.like-btn {
+  font-size: 15px;
+  color: #808080;
+}
+ 
+.unlike-btn {
+  font-size: 15px;
+  color: #e54747;
+}
+
+
+//携帯サイズ
+@media screen and (max-width: 660px) {
+  //header
+  #hamburger .btn-gNav span{
+	  position: absolute;
+	  width: 100%;
+	  height: 4px;
+	  background: #666;
+	  border-radius: 10px;
+	  -webkit-transition: all 400ms;
+	  transition: all 400ms;
+  }
+  
+  #hamburger .btn-gNav span:nth-child(1) {
+	  top: 0;
+  }
+  #hamburger .btn-gNav span:nth-child(2) {
+	  top: 10px;
+  }
+  #hamburger .btn-gNav span:nth-child(3) {
+	  top: 20px;
+  }
+  
+  #hamburger .btn-gNav{
+	  position: fixed;
+	  top: 20px;
+	  right: 20px;
+  	width: 30px;
+	  height: 24px;
+	  z-index: 3;
+  }
+  
+  #gNav {
+	  position: fixed;
+	  top: 0;
+	  right: -100%;
+	  width: 100%;
+	  height: 100%;
+	  z-index: 2;
+  }
+  
+  #gNav.open{
+	  right: 0px;
+  }
+  
+  #gNav .gNav-menu {
+	  width: 100%;
+	  height: 100%;
+	  display: flex;
+	  flex-direction: column;
+	  text-align: center;
+	  background-color: #a5a5a5;
+  }
+  
+  .logo {
+    width: 100px;
+  }
+  
+  .search-form {
+    margin: 0px;
+  }
+  
+  .search-form:before {
+    
+  }
+  
+  .search-form input[type="text"]{
+    width: 150px; 
+  }
+  
+  //posts
+  .post-contents {
+    width: 100%;
+  }
+  
+  article {
+    padding: 0px;
+  }
+  
+  aside {
+    width: 30%;
+  }
+  
+  textarea {
+    width: 350px;
+  }
 }

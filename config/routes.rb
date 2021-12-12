@@ -9,22 +9,25 @@ Rails.application.routes.draw do
   put 'mypage/:id', to: 'sessions#update'
   
   #likes
-  get 'likes' => 'likes#index', as: 'likes'
+  get 'likes' => "likes#index"
+  post 'likes' =>"likes#post_create"
   post 'like/:id' => 'likes#create', as: 'create_like'
   delete 'like/:id' => 'likes#destroy', as: 'destroy_like'
   
   #search
-  get 'search' => 'searches#search'
+  get 'search' => "searches#search"
+  post 'search' =>"searches#create"
   
-  #goods
-  get 'good' => "goods#good"
+  #good
+  get 'good' => "goods#good" 
+  post 'good' => 'goods#create'
   
   #admin
   namespace :admin do
     resources :users
   end
   
-  resources :posts
+  resources :posts 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   root to: 'posts#index'
 end

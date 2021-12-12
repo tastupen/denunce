@@ -36,6 +36,11 @@ class PostsController < ApplicationController
                                : "none"
   end
   
+  def search
+    @posts = Post.search(params[:word]).order(created_at: :desc)
+    @categories = Category.all
+  end
+  
   private
     def set_post
       @post = Post.find(params[:id])
