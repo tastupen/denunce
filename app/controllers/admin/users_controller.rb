@@ -23,6 +23,7 @@ class Admin::UsersController < ApplicationController
 
   def show
     @posts = Post.where(user_id: @user.id).order(created_at: :desc)
+    @likes = Like.where(user_id: @user.id).order(created_at: :desc)
     @categories = Category.all
   end
 

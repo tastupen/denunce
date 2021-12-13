@@ -37,7 +37,7 @@
     <h2>投稿一覧</h2>
     <hr>
     <% @posts.each do |post| %>
-      <div style="border-bottom: solid 1px #a9a9a9;">
+      <div style="border-bottom: solid 1px #a9a9a9;" id="post_<%= post.id %>">
         <div class="post-display">
           <div><p><%= safe_join(post.content.split("\n"),tag(:br)) %></p></div>
           <div>
@@ -46,17 +46,13 @@
             <% end %>
           </div>
         </div>
-        <% if User.find_by(id: session[:user_id]).liked_by?(post.id) %>
-          <%= link_to  destroy_like_path(post), method: :DELETE do %>
-            <i class="fas fa-heart"></i>
-          <% end %>
-          <%= post.likes.count %>
-        <% else %>
-          <%= link_to  create_like_path(post), method: :POST do %>
-            <i class="far fa-heart"></i>
-          <% end %>
-          <%= post.likes.count %>
-        <% end %>
+      </div>
+    <% end %>
+    <h2>いいねした投稿</h2>
+    <% @likes.each do |like| %>
+      <div style="border-bottom: solid 1px #a9a9a9;" id="like_<%= like.id %>">
+        <% post = Post.find_by(id: like.post_id) %>
+          <div style="padding: 20px;"><P><%= safe_join(post.content.split("\n"),tag(:br)) %></P></div>
       </div>
     <% end %>
     <div class="user-destroy-btn">
