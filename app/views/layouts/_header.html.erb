@@ -1,5 +1,5 @@
 <header class="page-header">
-  <h1><a href="/"><%= image_tag "denunce.png", class: "logo" %></a></h1>
+  <h1><a href="/"><%= image_tag "/images/denunce.png", class: "logo" %></a></h1>
   <div class="search-form">
     <%= form_with url: search_path, method: :get, local: :true do |f| %>
       <%= f.text_field :word, placeholder: "投稿を検索してください" %>
