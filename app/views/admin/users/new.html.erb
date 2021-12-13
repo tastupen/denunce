@@ -1,7 +1,7 @@
 <div class="text-center">
   <div class="form-all">
     <p id="alert"><%= alert %></p>
-    <h1><a href="/"><%= image_tag "denunce.png", class: "logo" %></a></h1> 
+    <h1><a href="/"><%= image_tag "/images/denunce.png", class: "logo" %></a></h1> 
     <h1>ユーザー登録</h1>
     
     <%= form_with model: [:admin, @user], local: true do |f|%>
