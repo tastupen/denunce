@@ -1,24 +1,23 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+# 概要
+ポートフォリオ用で作ったアプリです。  
+昨今、snsは発展してなかなか本心を吐き出す場がないと思い作成したアプリです!
 
-Things you may want to cover:
+# 使用言語
+ruby 2.7.5  
+rails 5.2.6  
+html  
+css  
+jQuery  
 
-* Ruby version
+# 使用gem
+gem 'jquery-rails'    
+gem 'chartkick'  
+gem 'dotenv-rails'  
 
-* System dependencies
+# ホームページ
+https://git.heroku.com/denunce.git
 
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
 
 * ...
