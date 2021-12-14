@@ -62,6 +62,7 @@ class Admin::UsersController < ApplicationController
     end
     
     def set_user
-      @user = User.find(params[:id])
+      @user = User.find_by(id: params[:id])
+      redirect_to(admin_user_path(session[:user_id]), alert: "あなたのアカウントではありません") if @user.blank?
     end
 end
