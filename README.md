@@ -17,7 +17,7 @@ gem 'chartkick'
 gem 'dotenv-rails'  
 
 # ホームページ
-https://git.heroku.com/denunce.git
+https://denunce.herokuapp.com/
 
 
 * ...
