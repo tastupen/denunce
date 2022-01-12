@@ -13,8 +13,4 @@ class Post < ApplicationRecord
   belongs_to :category
   
   has_many :likes, dependent: :destroy
-  
-  def self.search(words)
-    where(["content like?", "%#{words}%"]) 
-  end
 end

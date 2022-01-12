@@ -1,6 +1,11 @@
 class SearchesController < ApplicationController
   def search
-    @posts = Post.search(params[:word]).order(created_at: :desc)
+    @keyword = params[:keyword]
+    @posts = []
+    @keywords = @keyword.split(/[[:blank:]]+/)
+    @keywords.each do |keyword|
+      @posts += Post.where(["content like ?", "#{keyword}%"]).order(created_at: :desc)
+    end
     @category = Category.search(params[:word]).order(created_at: :desc)
     @categories = Category.all
   end
